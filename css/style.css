@@ -19,8 +19,6 @@ body {
     width: 150px;
     
 }
-
-
 /* Start Form */
 
 #form {
@@ -75,3 +73,37 @@ body {
 
 /* End for login Signup Form */
 
+
+/* START FOOTER STLYE hare */
+
+#footer {
+    background-color: blanchedalmond;
+    margin: 10px 0 0 0;
+    padding: 10px 5px 10px 5px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+#logo {
+    border-radius: 50%;
+    width: 100px;
+    
+}
+
+
+#footer h3 {
+    margin-top: 0;
+    margin-bottom: 5px;
+    font-size: 20px;
+    
+}
+
+
+#footer li {
+margin: 5px 0 5px 0 ;
+font-size: 15px;
+}
+
+/* END FOOTER Style here */
