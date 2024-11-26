@@ -1,0 +1,77 @@
+body {
+    background-color: aqua;
+    width: auto;
+    height: auto;
+    margin: 0;
+    padding: 0;     
+}
+
+/* logo style start */
+.navbar {
+    background-color: white;
+    padding: 10px;
+    width: auto;
+}
+
+
+#logo {
+    border-radius: 50%;
+    width: 150px;
+    
+}
+
+
+/* Start Form */
+
+#form {
+    width: auto;
+    max-width:98%;
+    margin: 0 10px 0 10px; /* Increase margin to account for the navbar's fixed height */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    
+    
+}
+
+/* Start For login Signup Form  */
+
+#signup_form, #login_form {
+    display: block;
+    padding: 20px 20px 20px 20px;
+    margin: 15px;
+    width: 300px;
+    height: auto;
+    text-align: center;
+    background-color: lightcyan;
+    text-align: left;
+    border-radius: 10px;
+}
+
+#signup_form h2, #login_form h2 {
+    margin-top: 10px;
+    text-align: center;
+}
+
+#signup_form #input , #login_form #input {
+    border: solid 1.5px;
+    width: 200px;
+    padding: 5px;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+#signup_form #btn , #login_form #btn {
+    text-align: center;
+    width: 150px;
+    background-color: lightblue;
+    padding: 2px;
+    border: solid darkviolet 3px;
+    border-radius: 15px;
+    font-size: 20px;
+    margin-top: 20px;
+}
+
+/* End for login Signup Form */
+
