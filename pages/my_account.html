@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Petnology Home</title>
+</head>
+<body>
+<div id="navbar"></div> <!--  this is nav bar dont remove this -->
+    
+
+    
+
+
+    <h1>Comming Soon</h1>
+    
+    
+    
+    
+<div id="footer"></div> <!--  this is footer dont remove this -->
+</body>
+</html>
+<script>
+    // import footer file script
+
+    fetch("../bar/footer.html")
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById("footer").innerHTML = data;
+        });
+
+    fetch("../bar/navbar.html")
+    .then(response => response.text())
+    .then(data => {
+        document.getElementById("navbar").innerHTML = data;
+    });    
+
+</script>
