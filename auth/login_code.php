@@ -29,19 +29,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             } else {
                 // If the user has not verified their email
                 $_SESSION['error'] = "Please verify your email before logging in.";
-                header("Location: login.php"); // Redirect back to login with an error
+                header("Location: ../pages/login.php"); // Redirect back to login with an error
                 exit();
             }
         } else {
             // If password verification fails
             $_SESSION['error'] = "Invalid password.";
-            header("Location: login.php"); // Redirect back to login with an error
+            header("Location: ../pages/login.php"); // Redirect back to login with an error
             exit();
         }
     } else {
         // If no account found with the given email
-        $_SESSION['error'] = "No account found with this email.";
-        header("Location: login.php"); // Redirect back to login with an error
+        $_SESSION['error'] = "Invalid email address.";
+        header("Location: ../pages/login.php"); // Redirect back to login with an error
         exit();
     }
 

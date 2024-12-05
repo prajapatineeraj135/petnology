@@ -14,7 +14,9 @@ if (isset($_GET['code'])) {
         $update_stmt->bind_param("s", $verification_code);
 
         if ($update_stmt->execute()) {
-            echo "Your email has been verified. You can now log in.";
+            // Redirect to the login page with a success message
+            header("Location: http://localhost:3000/petnology/pages/login.php?message=verified");
+            exit();
         } else {
             echo "Verification failed. Please try again.";
         }

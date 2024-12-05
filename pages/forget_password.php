@@ -17,17 +17,15 @@
    
 <!-- There Is Loging Form For User  -->
 
+        
         <div id="form">
-        <form action="#" id="login_form">
-            <h2>Recover Your Password</h2><hr>
-            <label for="email">Enter Your Email:</label><br>
-            <input type="email" name="email" id="input"><br>
-            <input type="submit" name="reset_password" id="btn" value="Reset">       
+        <form action="../auth/forget_password_code.php" method="POST" id="login_form">
+        <h2>Recover Your Password</h2>
+        <label for="email">Enter your email:</label>
+        <input type="email" name="email" id="input" required>
+        <button type="submit" id="btn">Reset</button>
         </form>
         </div>
-
-
-
 
 
 
