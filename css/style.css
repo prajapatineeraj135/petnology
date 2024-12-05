@@ -132,3 +132,39 @@ font-size: 15px;
 }
 
 /* END FOOTER Style here */
+
+
+
+
+
+/* account Page Css Start Here */
+
+.user_details {
+    background-color: antiquewhite;
+    width: 600px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.user_details .sidebar {
+margin-left: 0;
+padding: 15px;
+background-color: aquamarine;
+width: 200px;
+}
+
+.user_details .sidebar {
+    margin-left: 0;
+    padding: 15px;
+    background-color: aquamarine;
+    width: 200px;
+    
+    
+    }
+
+
+
+
+
+/* account Page Css end Here */

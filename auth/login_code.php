@@ -1,5 +1,8 @@
 <?php
-session_start(); // Start the session
+// Start the session
+session_start();
+
+// Include database connection file
 include 'connection.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -18,20 +21,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (password_verify($password, $hashed_password)) {
             if ($is_verified) {
                 // Store user ID in session
-                $_SESSION['id'] = $id;
+                $_SESSION['user_id'] = $id;
 
-                // Redirect to user panel or dashboard
-                echo "Login successful. Redirecting...";
+                // Redirect to the My Account page
                 header("Location: ../pages/my_account.php");
-                exit();
+                exit(); // Always call exit() after header to stop execution
             } else {
-                echo "Please verify your email before logging in.";
+                // If the user has not verified their email
+                $_SESSION['error'] = "Please verify your email before logging in.";
+                header("Location: login.php"); // Redirect back to login with an error
+                exit();
             }
         } else {
-            echo "Invalid password.";
+            // If password verification fails
+            $_SESSION['error'] = "Invalid password.";
+            header("Location: login.php"); // Redirect back to login with an error
+            exit();
         }
     } else {
-        echo "No account found with this email.";
+        // If no account found with the given email
+        $_SESSION['error'] = "No account found with this email.";
+        header("Location: login.php"); // Redirect back to login with an error
+        exit();
     }
 
     $stmt->close();
