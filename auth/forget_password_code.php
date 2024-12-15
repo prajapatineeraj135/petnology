@@ -33,7 +33,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $message = "Click the link below to reset your password:\n\n$reset_link\n\nThis link will expire in 1 hour.";
 
         if (smtp_mailer($email, $subject, $message)) {
-            echo "Reset link sent to your email.";
+
+            header("Location: http://localhost:3000/petnology/pages/login.php?message=mail");
+            // echo "Reset link sent to your email.";
         } else {
             echo "Failed to send reset link.";
         }

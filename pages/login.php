@@ -36,6 +36,11 @@
             {
             echo "<div class='alert alert-success'><strong>Your Password Reset Succefully</strong></div>";
             }
+
+            if (isset($_GET['message']) && $_GET['message'] == 'mail') 
+            {
+            echo "<div class='alert alert-success'><strong>Reset link sent to your email</strong></div>";
+            }
     ?>
         
          <h2>Login</h2> <hr>

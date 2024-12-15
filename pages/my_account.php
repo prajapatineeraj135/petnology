@@ -24,13 +24,13 @@ $address_query = "SELECT * FROM address WHERE user_id = $user_id";
 $address_result = mysqli_query($conn, $address_query);
 $address = mysqli_fetch_assoc($address_result); // Store address details
 
-// Fetch pickup address or warehouse details from the 'wherehouse' table
-$wherehouse_query = "SELECT * FROM wherehouse WHERE user_id = $user_id";
-$wherehouse_result = mysqli_query($conn, $wherehouse_query);
-$wherehouse = mysqli_fetch_assoc($wherehouse_result); // Store warehouse details
+// Fetch pickup address or warehouse details from the 'warehouse' table
+$warehouse_query = "SELECT * FROM warehouse WHERE user_id = $user_id";
+$warehouse_result = mysqli_query($conn, $warehouse_query);
+ // Store warehouse details
 
 // If there's no warehouse result, set a default value to prevent the undefined key error
-// $warehouse_location = $wherehouse['warehouse_id'] ?? 'Not available';
+// $warehouse_location = $warehouse['warehouse_id'] ?? 'Not available';
 
 // Fetch user shipments from the 'shipments' table
 $shipment_query = "SELECT * FROM shipments WHERE user_id = $user_id";
@@ -60,7 +60,7 @@ $shipment_result = mysqli_query($conn, $shipment_query);
         </ul>
         <!-- Logout button -->
         <form action="../auth/logout_code.php" method="POST">
-            <button type="submit">Logout</button>
+            <button type="submit" class="logout-btn">Logout</button>
         </form>
     </div>
 
@@ -73,6 +73,12 @@ $shipment_result = mysqli_query($conn, $shipment_query);
         // User details section
         if ($section == 'details') {
             echo "<h2>User Details</h2>";
+            if ($user['is_verified'] == 1) {
+                echo "<p>Verify Account: Verified</p>";
+            } else {
+                echo "<p>Verify Account: Not Verified</p>";
+            }
+                        
             echo "<p>User Id: " . $user['id'] . "</p>";
             echo "<p>Name: " . $user['name'] . "</p>";
             echo "<p>Contact: " . $user['contact'] . "</p>";
@@ -93,16 +99,21 @@ $shipment_result = mysqli_query($conn, $shipment_query);
         // Pickup or warehouse address section
         } elseif ($section == 'pickup_address') {
             echo "<h2>Your Pickup Address</h2>";
-            echo "<p>Nickname: " . $wherehouse['nickname']  . "</p>";
-            echo "<p>Contact Person: " . $wherehouse['name']  . "</p>";
-            echo "<p>Contact: " . $wherehouse['phone']  . "</p>";
-            echo "<p>Alt Contact: " . $wherehouse['alt_phone']  . "</p>";
-            echo "<p>Street 1: " . $wherehouse['street1']  . "</p>";
-            echo "<p>Street 2: " . $wherehouse['street2']  . "</p>";
-            echo "<p>Landmark: " . $wherehouse['locality']  . "</p>";
-            echo "<p>Pincode: " . $wherehouse['pincode']  . "</p>";
-            echo "<p>City: " . $wherehouse['city']  . "</p>";
-
+            if (mysqli_num_rows($warehouse_result) > 0) {
+                // Display each shipment's details
+                while ($warehouse = mysqli_fetch_assoc($warehouse_result)) {       
+            echo "<p>Pickup Id: " . $warehouse['warehouse_id']  . "</p>";
+            echo "<p>Nickname: " . $warehouse['nickname']  . "</p>";
+            echo "<p>Contact Person: " . $warehouse['name']  . "</p>";
+            echo "<p>Contact: " . $warehouse['phone']  . "</p>";
+            echo "<p>Alt Contact: " . $warehouse['alt_phone']  . "</p>";
+            echo "<p>Street 1: " . $warehouse['street1']  . "</p>";
+            echo "<p>Street 2: " . $warehouse['street2']  . "</p>";
+            echo "<p>Landmark: " . $warehouse['locality']  . "</p>";
+            echo "<p>Pincode: " . $warehouse['pincode']  . "</p>";
+            echo "<p>City: " . $warehouse['city']  . "</p><hr>";
+        }
+        }
             echo "<a href='edit.php?section=pickup_address'>Edit</a>";
             
 
@@ -113,7 +124,7 @@ $shipment_result = mysqli_query($conn, $shipment_query);
             if (mysqli_num_rows($shipment_result) > 0) {
                 // Display each shipment's details
                 while ($shipment = mysqli_fetch_assoc($shipment_result)) {
-                    echo "<p>Shipment ID: " . $shipment['shipment_id'] . "  AWS Create: " . $shipment['aws'] . "</p>";
+                    echo "<p>Shipment ID: " . $shipment['shipment_id'] . "  Charges: " . $shipment['selected_courier_cost'] . "</p>";
                 }
             } else {
                 echo "<p>No Shipments Available</p>";

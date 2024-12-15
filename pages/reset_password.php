@@ -8,6 +8,11 @@
 
 </head>
 <body>
+<div id="navbar"></div> <!--  this is nav bar dont remove this -->
+
+
+
+
     
     <div id="form">
     <form action="../auth/reset_password_code.php" method="POST" id="login_form">
@@ -21,6 +26,25 @@
     </form>
     </div>
 
+
+
+
+    <div id="footer"></div> <!--  this is footer dont remove this -->
 </body>
 </html>
-       
+<script>
+    // import footer file script
+
+    fetch("../bar/footer.html")
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById("footer").innerHTML = data;
+        });
+
+    fetch("../bar/navbar.html")
+    .then(response => response.text())
+    .then(data => {
+        document.getElementById("navbar").innerHTML = data;
+    });    
+
+</script>
