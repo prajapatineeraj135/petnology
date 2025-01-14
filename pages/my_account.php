@@ -83,39 +83,59 @@ $shipment_result = mysqli_query($conn, $shipment_query);
             echo "<p>Name: " . $user['name'] . "</p>";
             echo "<p>Contact: " . $user['contact'] . "</p>";
             echo "<p>Email: " . $user['email'] . "</p>";
-            echo "<a href='edit.php?section=details'>Edit</a>";
+            // echo "<a href='edit.php?section=details'>Edit</a>";
 
-        // User address section
-        } elseif ($section == 'address') {
+
+
+            // User address section
+        
+            } elseif ($section == 'address') {
             echo "<h2>Your Address</h2>";
-            echo "<p>Stree1: " . $address['street1'] . "</p>";
-            echo "<p>Street2: " . $address['street2'] . "</p>";
+
+            // Check if the address query returned any result
+            if ($address) 
+            {
+            echo "<p>Street 1: " . $address['street1'] . "</p>";
+            echo "<p>Street 2: " . $address['street2'] . "</p>";
             echo "<p>Landmark: " . $address['locality'] . "</p>";
             echo "<p>Pincode: " . $address['pincode'] . "</p>";
             echo "<p>City: " . $address['city'] . "</p>";
+            } 
+            else {
+            echo "<p>No address available. Please add your address details.</p>";
+            }
             echo "<a href='edit.php?section=address'>Edit</a>";
 
+
+
             
-        // Pickup or warehouse address section
-        } elseif ($section == 'pickup_address') {
+            // Pickup or warehouse address section
+            } elseif ($section == 'pickup_address') {
             echo "<h2>Your Pickup Address</h2>";
+            // Check if there are any warehouse addresses
             if (mysqli_num_rows($warehouse_result) > 0) {
-                // Display each shipment's details
-                while ($warehouse = mysqli_fetch_assoc($warehouse_result)) {       
-            echo "<p>Pickup Id: " . $warehouse['warehouse_id']  . "</p>";
-            echo "<p>Nickname: " . $warehouse['nickname']  . "</p>";
-            echo "<p>Contact Person: " . $warehouse['name']  . "</p>";
-            echo "<p>Contact: " . $warehouse['phone']  . "</p>";
-            echo "<p>Alt Contact: " . $warehouse['alt_phone']  . "</p>";
-            echo "<p>Street 1: " . $warehouse['street1']  . "</p>";
-            echo "<p>Street 2: " . $warehouse['street2']  . "</p>";
-            echo "<p>Landmark: " . $warehouse['locality']  . "</p>";
-            echo "<p>Pincode: " . $warehouse['pincode']  . "</p>";
-            echo "<p>City: " . $warehouse['city']  . "</p><hr>";
-        }
-        }
+            // Display each warehouse's details
+            while ($warehouse = mysqli_fetch_assoc($warehouse_result)) {       
+            echo "<p>Pickup Id: " . $warehouse['warehouse_id'] . "</p>";
+            echo "<p>Nickname: " . $warehouse['nickname'] . "</p>";
+            echo "<p>Contact Person: " . $warehouse['name'] . "</p>";
+            echo "<p>Contact: " . $warehouse['phone'] . "</p>";
+            echo "<p>Alt Contact: " . $warehouse['alt_phone'] . "</p>";
+            echo "<p>Street 1: " . $warehouse['street1'] . "</p>";
+            echo "<p>Street 2: " . $warehouse['street2'] . "</p>";
+            echo "<p>Landmark: " . $warehouse['locality'] . "</p>";
+            echo "<p>Pincode: " . $warehouse['pincode'] . "</p>";
+            echo "<p>City: " . $warehouse['city'] . "</p><hr>";
+            }
+            } else {
+            // If no warehouse address is found
+            echo "<p>No pickup address available. Please add your address details.</p>";
+            }
+
+            // Provide the edit link regardless of whether an address exists
             echo "<a href='edit.php?section=pickup_address'>Edit</a>";
-            
+
+
 
 
         // User shipments section
@@ -152,7 +172,7 @@ mysqli_close($conn);
         });
 
     // Fetch the navbar content and insert it into the navbar div
-    fetch("../bar/navbar.html")
+    fetch("../bar/navbar.php")
     .then(response => response.text())
     .then(data => {
         document.getElementById("navbar").innerHTML = data;

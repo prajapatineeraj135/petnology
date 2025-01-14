@@ -9,10 +9,7 @@
 </head>
 <body>
 <div id="navbar"></div> <!--  this is nav bar dont remove this -->
-           
-
-
-        
+               
 <div id="form">
     <!-- This Is Form For  user Signup   -->
     <form action="" id="signup_form" method="POST">
@@ -23,10 +20,11 @@
 
 
         <label for="contact">Contact:</label><br>
-        <input type="text" name="contact" id="input" required><br>
+        <input type="text" name="contact" id="input" required pattern="[0-9]{10}" title="Please enter a valid 10-digit phone number"><br>
 
         <label for="email">Email:</label><br>
         <input type="email" name="email" id="input" required><br>
+
 
 
         <label for="password">Password:</label><br>
@@ -54,7 +52,7 @@
             document.getElementById("footer").innerHTML = data;
         });
 
-    fetch("../bar/navbar.html")
+    fetch("../bar/navbar.php")
     .then(response => response.text())
     .then(data => {
         document.getElementById("navbar").innerHTML = data;

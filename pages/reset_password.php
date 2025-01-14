@@ -41,7 +41,7 @@
             document.getElementById("footer").innerHTML = data;
         });
 
-    fetch("../bar/navbar.html")
+    fetch("../bar/navbar.php")
     .then(response => response.text())
     .then(data => {
         document.getElementById("navbar").innerHTML = data;

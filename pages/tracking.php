@@ -19,8 +19,6 @@ if (!isset($_SESSION['user_id'])) {
 <body>
 <div id="navbar"></div> <!--  this is nav bar dont remove this -->
 
-    
-
 
     
    
@@ -36,11 +34,6 @@ if (!isset($_SESSION['user_id'])) {
         </div>
 
 
-
-
-
-
-
 <div id="footer"></div> <!--  this is footer dont remove this -->
 </body>
 </html>
@@ -53,7 +46,7 @@ if (!isset($_SESSION['user_id'])) {
             document.getElementById("footer").innerHTML = data;
         });
 
-    fetch("../bar/navbar.html")
+    fetch("../bar/navbar.php")
     .then(response => response.text())
     .then(data => {
         document.getElementById("navbar").innerHTML = data;

@@ -15,7 +15,7 @@ if (isset($_GET['code'])) {
 
         if ($update_stmt->execute()) {
             // Redirect to the login page with a success message
-            header("Location: http://localhost:3000/petnology/pages/login.php?message=verified");
+            header("Location: ../pages/login.php?message=verified");
             exit();
         } else {
             echo "Verification failed. Please try again.";

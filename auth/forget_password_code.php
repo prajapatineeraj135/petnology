@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         if (smtp_mailer($email, $subject, $message)) {
 
-            header("Location: http://localhost:3000/petnology/pages/login.php?message=mail");
+            header("Location: ../pages/login.php?message=mail");
             // echo "Reset link sent to your email.";
         } else {
             echo "Failed to send reset link.";

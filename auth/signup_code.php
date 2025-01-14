@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email_check->store_result();
 
     if ($email_check->num_rows > 0) {
-        echo "Email already registered. Please login.";
+        header("Location: ../pages/login.php?message=registered");
         $email_check->close();
         exit();
     }
@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($stmt->execute()) {
         // Send verification email
-        $verification_link = "http://localhost:3000/petnology/auth/verify.php?code=$verification_code";
+        $verification_link = "verify.php?code=$verification_code";
         $subject = "Email Verification";
         $message = "Click the link below to verify your email:\n\n$verification_link";
 

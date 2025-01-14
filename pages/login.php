@@ -27,6 +27,11 @@
                 unset($_SESSION['error']); // Clear the error message after it's displayed
             }
 
+            if (isset($_GET['message']) && $_GET['message'] == 'registered') 
+            {
+            echo "<div class='alert alert-success'><strong style='color: red; content-align: center;'>Email already registered. Please login</strong></div>";
+            }
+
             if (isset($_GET['message']) && $_GET['message'] == 'verified') 
             {
             echo "<div class='alert alert-success'><stron>Your Account Verified Successfully</strong></div>";
@@ -71,7 +76,7 @@
             document.getElementById("footer").innerHTML = data;
         });
 
-    fetch("../bar/navbar.html")
+    fetch("../bar/navbar.php")
     .then(response => response.text())
     .then(data => {
         document.getElementById("navbar").innerHTML = data;

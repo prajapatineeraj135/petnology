@@ -9,11 +9,6 @@
 </head>
 <body>
 <div id="navbar"></div> <!--  this is nav bar dont remove this -->
-
-    
-
-
-    
    
 <!-- There Is Loging Form For User  -->
 
@@ -42,7 +37,7 @@
             document.getElementById("footer").innerHTML = data;
         });
 
-    fetch("../bar/navbar.html")
+    fetch("../bar/navbar.php")
     .then(response => response.text())
     .then(data => {
         document.getElementById("navbar").innerHTML = data;

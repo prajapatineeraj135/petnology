@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt = $conn->prepare("DELETE FROM password_resets WHERE user_id = ?");
         $stmt->bind_param("i", $user_id);
         $stmt->execute();
-        header("Location: http://localhost:3000/petnology/pages/login.php?message=reset");
+        header("Location: ../pages/login.php?message=reset");
 
     } else {
         echo "Failed to reset password.";
