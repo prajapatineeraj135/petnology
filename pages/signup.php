@@ -25,13 +25,18 @@
         <label for="email">Email:</label><br>
         <input type="email" name="email" id="input" required><br>
 
-
-
         <label for="password">Password:</label><br>
-        <input type="password" name="password" id="input" placeholder="Password" required ><br>
-        <input type="password" name="password" id="input" placeholder="Conferm Password" required><br>
-        
-        <input type="submit" name="signup" id="btn" value="Signup"><br><br>
+        <input type="password" name="password" id="password" placeholder="Password" 
+        pattern="(?=.*[A-Z])(?=.*[@$&*])(?=.*[0-9])[A-Za-z\d@$&*]+" 
+        title="Password must contain at least 1 capital letter, 1 special character (@, $, &, *), and 1 number (1-9)." 
+        required><br> 
+    
+        <!-- Toggle password visibility checkbox -->
+        <input type="checkbox" id="togglePassword"> Show Password<br><br>
+
+        <p id="password-error" style="color: red; display: none;">Passwords do not match!</p>
+
+        <input type="submit" name="signup" id="btn" value="SignUp"><br><br>
     </form>
 
 
@@ -43,19 +48,31 @@
 <div id="footer"></div> <!--  this is footer dont remove this -->
 </body>
 </html>
-<script>
-    // import footer file script
+            <script>
+            // import footer file script
 
-    fetch("../bar/footer.html")
-        .then(response => response.text())
-        .then(data => {
+            fetch("../bar/footer.html")
+            .then(response => response.text())
+            .then(data => {
             document.getElementById("footer").innerHTML = data;
-        });
+            });
 
-    fetch("../bar/navbar.php")
-    .then(response => response.text())
-    .then(data => {
-        document.getElementById("navbar").innerHTML = data;
-    });    
+            fetch("../bar/navbar.php")
+            .then(response => response.text())
+            .then(data => {
+            document.getElementById("navbar").innerHTML = data;
+            });    
 
-</script>
+
+
+            // Toggle password visibility
+            document.getElementById('togglePassword').addEventListener('change', function() {
+            const password = document.getElementById('password');
+            const confirm_password = document.getElementById('confirm_password');
+            const type = this.checked ? 'text' : 'password';
+            password.type = type;
+            confirm_password.type = type;
+            });
+
+            
+            </script>

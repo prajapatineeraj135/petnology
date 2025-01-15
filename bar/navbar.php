@@ -22,6 +22,12 @@ session_start();
             <div class="colum">
                 <a href="http://localhost:3000/petnology/pages/my_account.php">My Account</a>
             </div>
+            
+            <!-- Tracking Link (always visible) -->
+            <div class="colum">
+            <a href="http://localhost:3000/petnology/pages/tracking.php">Track</a>
+            </div>
+
             <div class="colum">
                 <a href="http://localhost:3000/petnology/auth/logout_code.php">Log Out</a>
             </div>
@@ -31,14 +37,16 @@ session_start();
                 <a href="http://localhost:3000/petnology/pages/login.php">Login</a>
             </div>
             <div class="colum">
-                <a href="http://localhost:3000/petnology/pages/signup.php">Signup</a>
+                <a href="http://localhost:3000/petnology/pages/signup.php">SignUp</a>
+            </div>
+
+            <!-- Tracking Link (always visible) -->
+            <div class="colum">
+                <a href="http://localhost:3000/petnology/pages/tracking.php">Track</a>
             </div>
         <?php endif; ?>
 
-        <!-- Tracking Link (always visible) -->
-        <div class="colum">
-            <a href="http://localhost:3000/petnology/pages/tracking.php">Track</a>
-        </div>
+        
     </nav>
 </body>
 </html>

@@ -34,7 +34,7 @@
 
             if (isset($_GET['message']) && $_GET['message'] == 'verified') 
             {
-            echo "<div class='alert alert-success'><stron>Your Account Verified Successfully</strong></div>";
+            echo "<div class='alert alert-success'><stron>Your Account Verified, Please Log In</strong></div>";
             }
 
             if (isset($_GET['message']) && $_GET['message'] == 'reset') 
@@ -46,14 +46,20 @@
             {
             echo "<div class='alert alert-success'><strong>Reset link sent to your email</strong></div>";
             }
+
+            if (isset($_GET['message']) && $_GET['message'] == 'resend') 
+            {
+            echo "<div class='alert alert-success'><strong>Verification email has been Send! Please check your email to verify your account.</strong></div>";
+            }
     ?>
         
          <h2>Login</h2> <hr>
         <label for="email">Email:</label><br>
-        <input type="email" name="email" id="input"><br>
+        <input type="email" name="email" id="input" required><br>
         
         <label for="password">Password:</label><br>
-        <input type="password" name="password" id="input"><br>
+        <input type="password" name="password" id="input" required><br>
+        <a href="otp_login.php">Login With OTP</a><br><br>
         <a href="forget_password.php">Forget Pasword</a><br>
         <input type="submit" name="login" id="btn" value="Login">  
     </form>

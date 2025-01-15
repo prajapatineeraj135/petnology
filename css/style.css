@@ -66,13 +66,18 @@ body {
     text-align: center;
 }
 
-#signup_form #input , #login_form #input, #track_form #input {
+#signup_form #input , #password , #confirm_password, #otp, #login_form #input, #track_form #input {
     border: solid 1.5px;
     width: 200px;
     padding: 5px;
     margin-top: 5px;
     margin-bottom: 20px;
     border-radius: 5px;
+}
+
+.toggle-visibility {
+    cursor: pointer;
+    margin-left: 5px;
 }
 
 #signup_form #btn , #login_form #btn, #track_form #btn {

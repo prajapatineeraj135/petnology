@@ -8,27 +8,46 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $contact = $_POST['contact'];
     $email = $_POST['email'];
     $password = password_hash($_POST['password'], PASSWORD_BCRYPT); // Secure password
-    $verification_code = bin2hex(random_bytes(16)); // Generate a unique verification code
+    $new_verification_code = bin2hex(random_bytes(16)); // Generate a unique verification code
 
     // Check if email already exists
-    $email_check = $conn->prepare("SELECT email FROM users WHERE email = ?");
+    $email_check = $conn->prepare("SELECT email, is_verified, verification_code FROM users WHERE email = ?");
     $email_check->bind_param("s", $email);
     $email_check->execute();
     $email_check->store_result();
 
     if ($email_check->num_rows > 0) {
-        header("Location: ../pages/login.php?message=registered");
+        // Bind result to fetch existing values
+        $email_check->bind_result($existing_email, $is_verified, $verification_code);
+        $email_check->fetch();
+
+        // If email exists but is not verified, resend the existing verification code
+        if ($is_verified == 0) {
+            // Resend the existing verification code
+            $verification_link = "http://localhost:3000/petnology/auth/verify.php?code=$verification_code";
+            $subject = "Email Verification";
+            $message = "Click the link below to verify your email:\n\n$verification_link";
+
+            if (smtp_mailer($email, $subject, $message)) {
+                
+                header("Location: ../pages/login.php?message=resend");
+            } else {
+                echo "Failed to resend verification email.";
+            }
+        } else {
+            header("Location: ../pages/login.php?message=verified");
+        }
         $email_check->close();
         exit();
     }
 
-    // Insert user into database
+    // If email does not exist, insert new user into the database
     $stmt = $conn->prepare("INSERT INTO users (name, contact, email, password, verification_code) VALUES (?, ?, ?, ?, ?)");
-    $stmt->bind_param("sssss", $name, $contact, $email, $password, $verification_code);
+    $stmt->bind_param("sssss", $name, $contact, $email, $password, $new_verification_code);
 
     if ($stmt->execute()) {
         // Send verification email
-        $verification_link = "verify.php?code=$verification_code";
+        $verification_link = "http://localhost:3000/petnology/auth/verify.php?code=$new_verification_code";
         $subject = "Email Verification";
         $message = "Click the link below to verify your email:\n\n$verification_link";
 

@@ -74,9 +74,9 @@ $shipment_result = mysqli_query($conn, $shipment_query);
         if ($section == 'details') {
             echo "<h2>User Details</h2>";
             if ($user['is_verified'] == 1) {
-                echo "<p>Verify Account: Verified</p>";
+                echo "<p>Verify Account: Verified ✅</p>";
             } else {
-                echo "<p>Verify Account: Not Verified</p>";
+                echo "<p>Verify Account: Not Verified ❎</p>";
             }
                         
             echo "<p>User Id: " . $user['id'] . "</p>";

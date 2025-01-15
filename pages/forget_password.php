@@ -16,8 +16,9 @@
         <div id="form">
         <form action="../auth/forget_password_code.php" method="POST" id="login_form">
         <h2>Recover Your Password</h2>
-        <label for="email">Enter your email:</label>
-        <input type="email" name="email" id="input" required>
+        <label for="email">Enter your email:</label><br>
+        <input type="email" name="email" id="input" required><br>
+        <a href="otp_login.php">Login With OTP</a><br><br>
         <button type="submit" id="btn">Reset</button>
         </form>
         </div>

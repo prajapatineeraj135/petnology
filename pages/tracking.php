@@ -1,12 +1,3 @@
-<?php
-// Start the session to track the logged-in user
-session_start();
-if (!isset($_SESSION['user_id'])) {
-    header("Location: login.php");
-    exit();
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
